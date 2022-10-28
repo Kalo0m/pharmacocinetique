@@ -13,8 +13,8 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="container mx-auto flex min-h-screen flex-col items-center justify-center p-4">
-        <h1 className="text-5xl font-extrabold leading-normal text-gray-700 md:text-[5rem]">
+      <main className="container mx-auto flex min-h-screen flex-col text-gray-700items-center justify-center p-4">
+        <h1 className="text-5xl font-extrabold leading-normal text-white md:text-[5rem]">
           Coucou Valentine, je te vois
         </h1>
       </main>
