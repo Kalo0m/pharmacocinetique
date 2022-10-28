@@ -15,7 +15,7 @@ const Home: NextPage = () => {
 
       <main className="container mx-auto flex min-h-screen flex-col bg-gray-700 items-center justify-center p-4">
         <h1 className="text-5xl font-extrabold leading-normal text-white md:text-[5rem]">
-          Coucou Valentine, je te vois !
+          Coucou Valentine, je te vois ! :)
         </h1>
       </main>
     </>
