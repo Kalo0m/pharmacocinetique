@@ -3,8 +3,8 @@ import Head from "next/head";
 import { trpc } from "../utils/trpc";
 
 const Home: NextPage = () => {
-  const hello = trpc.example.hello.useQuery({ text: "from tRPC" });
-
+  const {data: question} = trpc.example.getQuestion.useQuery();
+  
   return (
     <>
       <Head>
@@ -15,8 +15,19 @@ const Home: NextPage = () => {
 
       <main className="mx-auto flex min-h-screen flex-col bg-gray-900 items-center justify-center p-4">
         <h1 className="text-5xl font-extrabold leading-normal text-white md:text-[5rem]">
-          Coucou Valentine, je te vois ! :)
+          <p>{question?.question.molecule}</p>
         </h1>
+        <h1 className="text-3xl mb-10 font-semibold leading-normal text-white md:text-[3rem]">
+          <p>{question?.question.question}</p>
+        </h1>
+        <div className="lg:flex-row flex flex-col gap-4">
+        {question?.answers.map((answer) => (
+          <button key={answer.id} className="inline-flex w-full justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-base font-medium text-white shadow-sm transition-all hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm">
+            {answer.answer}
+          </button>
+        ))}
+        </div>
+        
       </main>
     </>
   );

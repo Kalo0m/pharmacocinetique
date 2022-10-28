@@ -10,8 +10,21 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Example {
+model Question {
   id        String   @id @default(cuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  molecule  String
+  question  String
+  answer    Answer? @relation(fields: [answerId], references: [id])
+  answerId  String? @unique
+}
+
+model Answer {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  answer    String
+  type      String
+  question  Question?
 }
