@@ -1,10 +1,26 @@
+import { Answer } from "@prisma/client";
 import type { NextPage } from "next";
 import Head from "next/head";
+import { useState } from "react";
 import { trpc } from "../utils/trpc";
 
 const Home: NextPage = () => {
-  const {data: question} = trpc.example.getQuestion.useQuery();
-  
+  const { data: question } = trpc.questions.getQuestion.useQuery();
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [showFailure, setShowFailure] = useState(false);
+  const onButtonClick = (answer: Answer) => {
+    if (!question) return;
+    if (answer.id === question.question?.answer?.id) {
+      setShowSuccess(true);
+    }
+    else setShowFailure(true);
+    setTimeout(() => {
+      setShowFailure(false);
+      setShowSuccess(false);
+    }, 5000);
+    return undefined
+  }
+  if (!question) return <div className="text-white">loading...</div>
   return (
     <>
       <Head>
@@ -13,7 +29,10 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="mx-auto flex min-h-screen flex-col bg-gray-900 items-center justify-center p-4">
+      <main className="mx-auto flex min-h-screen w-screen flex-col bg-gray-900 items-center justify-center p-4">
+        <p style={{ animation: showSuccess ? `bounce 1s ease` : '' }} className="text-green-500 text-3xl h-32 font-bold">{showSuccess && 'Bravo'}</p>
+        <p style={{ animation: showFailure ? `bounce 1s ease` : '' }} className="text-red-500 transition-all text-3xl scale-100 h-32 font-bold">{showFailure && 'T\'es nul'}</p>
+        {(showSuccess || showFailure) && <div className="text-xl text-gray-300 h-32 font-semibold text-center">La bonne réponse était <p className="mt-3 text-blue-400 font-bold">{question.question?.answer?.answer}</p></div>}
         <h1 className="text-5xl font-extrabold leading-normal text-white md:text-[5rem]">
           <p>{question?.question.molecule}</p>
         </h1>
@@ -21,13 +40,13 @@ const Home: NextPage = () => {
           <p>{question?.question.question}</p>
         </h1>
         <div className="lg:flex-row flex flex-col gap-4">
-        {question?.answers.map((answer) => (
-          <button key={answer.id} className="inline-flex w-full justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-base font-medium text-white shadow-sm transition-all hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm">
-            {answer.answer}
-          </button>
-        ))}
+          {question?.answers.map((answer) => (
+            <button disabled={showSuccess || showFailure} onClick={() => onButtonClick(answer)} key={answer.id} className="inline-flex w-full justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-base font-medium text-white shadow-sm transition-all hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm">
+              {answer.answer}
+            </button>
+          ))}
         </div>
-        
+
       </main>
     </>
   );

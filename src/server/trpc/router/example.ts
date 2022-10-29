@@ -11,7 +11,7 @@ type QuestionResponse = {
 };
 
 
-export const exampleRouter = router({
+export const questionsRouter = router({
   // hello: publicProcedure
   //   .input(z.object({ text: z.string().nullish() }).nullish())
   //   .query(({ input }) => {
