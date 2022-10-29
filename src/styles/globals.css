@@ -1,9 +1,0 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@keyframes bounce{
-     from {transform: scale(0);}
-     50%  {transform: scale(1.1);}
-     to   {transform: scale(1);}
-}
