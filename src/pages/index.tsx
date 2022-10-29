@@ -45,10 +45,10 @@ const Home: NextPage = () => {
 
           </div>
           <h1 className="text-5xl font-extrabold leading-normal text-white md:text-[5rem]">
-            <p>{question?.question.molecule}</p>
+            <p className="text-center">{question?.question.molecule}</p>
           </h1>
           <h1 className="text-3xl mb-10 font-semibold leading-normal text-white md:text-[3rem]">
-            <p>{question?.question.question}</p>
+            <p className="text-center">{question?.question.question}</p>
           </h1>
           <div className="lg:flex-row flex flex-col gap-4">
             {question?.answers.map((answer) => (

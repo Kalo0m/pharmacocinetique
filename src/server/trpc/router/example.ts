@@ -20,7 +20,6 @@ export const questionsRouter = router({
   //     };
   //   }),
   getQuestion: publicProcedure.query(async ({ ctx }): Promise<QuestionResponse> => {
-    console.log('get new Question')
     const productsCount = await ctx.prisma.question.count();
     const skip = Math.floor(Math.random() * productsCount);
     const question = await ctx.prisma.question.findFirst({
@@ -28,14 +27,36 @@ export const questionsRouter = router({
       include: {
         answer: true,
       },
+      where: {
+        answer: {
+          answer: {
+            not: '',
+          }
+        }
+      },
       orderBy: {
         id: 'desc',
       },
     });
     if (!question) throw new Error('No question found');
     if (!question.answer) throw new Error('No question\'s answer found');
-    const skip2 = Math.floor(Math.random() * productsCount);
+    const answersCount = await ctx.prisma.answer.count({
+      where: {
+        type: {
+          equals: question.answer.type
 
+        },
+        answer: {
+          not: '',
+        },
+        id: {
+          not: question.answer.id
+        }
+      }
+    });
+
+    const skip2 = Math.floor(Math.random() * answersCount);
+    console.log(question.answer)
     let answers = await ctx.prisma.answer.findMany({
       take: 2,
       skip: skip2,
@@ -43,13 +64,16 @@ export const questionsRouter = router({
         type: {
           equals: question.answer.type
         },
+        answer: {
+          not: '',
+        },
         id: {
           not: question.answer.id
         }
       }
-    }) ?? []
+    })
+    console.log({ answers })
     answers = [...answers, question.answer]
-
     shuffleArray(answers)
 
     return {

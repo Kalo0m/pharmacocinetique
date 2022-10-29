@@ -13,6 +13,7 @@ specifiers:
   '@typescript-eslint/eslint-plugin': ^5.33.0
   '@typescript-eslint/parser': ^5.33.0
   autoprefixer: ^10.4.7
+  csv-parse: ^5.3.1
   eslint: 8.22.0
   eslint-config-next: 12.3.1
   next: 12.3.1
@@ -35,6 +36,7 @@ dependencies:
   '@trpc/next': 10.0.0-rc.0_yhe74cpnx27jwqfypzwl76x4by
   '@trpc/react-query': 10.0.0-rc.0_kv5kvek3wo2lmbs7gydz3ad7uu
   '@trpc/server': 10.0.0-rc.0
+  csv-parse: 5.3.1
   next: 12.3.1_2mygebwfgdyopr3fy2qddu2eli
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -789,6 +791,10 @@ packages:
   /csstype/3.1.1:
     resolution: {integrity: sha512-DJR/VvkAvSZW9bTouZue2sSxDwdTN92uHjqeKVm+0dAqdfNykRzQ95tay8aXMBAAPpUiq4Qcug2L7neoRh2Egw==}
     dev: true
+
+  /csv-parse/5.3.1:
+    resolution: {integrity: sha512-R4Hv6eGJNzgcKdThZ6XORbSQ873HVcNke74QIq+LbwpT90LaZ8Xzl7KKiuIP16xq/P7ofzRt0h7S0xm+fVScsw==}
+    dev: false
 
   /damerau-levenshtein/1.0.8:
     resolution: {integrity: sha512-sdQSFB7+llfUcQHUQO3+B8ERRj0Oa4w9POWMI/puGtuf7gFywGmkaLCElnudfTiKZV+NvHqL0ifzdrI8Ro7ESA==}
