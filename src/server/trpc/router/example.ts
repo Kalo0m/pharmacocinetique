@@ -91,11 +91,12 @@ export const questionsRouter = router({
   }),
   saveResponse: publicProcedure.input(z.object({ value: z.boolean(), questionId: z.string() })).mutation(async ({ ctx: { prisma, req }, input: { value, questionId } }) => {
 
-    const ipBis = JSON.stringify(req.headers['x-forwarded-for']) || req.connection.remoteAddress
+    let ipBis = req.headers['x-forwarded-for']
+    if (typeof ipBis !== 'string') { ipBis = ipBis?.[0] ?? '' }
 
     return prisma.result.create({
       data: {
-        ip: ipBis ?? '',
+        ip: ipBis,
         result: value,
         question: {
           connect: {
