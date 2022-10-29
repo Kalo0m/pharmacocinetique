@@ -6,15 +6,22 @@ import { trpc } from "../utils/trpc";
 
 const Home: NextPage = () => {
   const { data: question, refetch, isLoading } = trpc.questions.getQuestion.useQuery(undefined, { refetchOnWindowFocus: false });
+  const { data: categories } = trpc.questions.getCategories.useQuery();
+  const mutation = trpc.questions.saveResponse.useMutation();
+
   const [showSuccess, setShowSuccess] = useState(false);
   const [showFailure, setShowFailure] = useState(false);
-
+  // const { data, refetch: refetchSave } = trpc.questions.saveResponse.useQuery({ value:  }, {
+  //   refetchOnWindowFocus: false,
+  //   enabled: false // disable this query from automatically running
+  // });
   const onButtonClick = (answer: Answer) => {
     if (!question) return;
     if (answer.id === question.question?.answer?.id) {
       setShowSuccess(true);
     }
     else setShowFailure(true);
+    mutation.mutate({ value: answer.id === question.question?.answer?.id, questionId: question.question?.id });
     setTimeout(() => {
       setShowFailure(false);
       setShowSuccess(false);
@@ -42,7 +49,6 @@ const Home: NextPage = () => {
             <p className="text-green-500 text-3xl font-bold">{showSuccess && 'Bravo'}</p>
             <p className="text-red-500 transition-all text-3xl scale-100 h-32 font-bold">{showFailure && 'IMT > Veto'}</p>
             {(showSuccess || showFailure) && <div className="text-lg text-gray-700 h-32 font-semibold text-center">La bonne réponse est <p className="mt-3 text-red-600 font-bold">{question.question?.answer?.answer}</p></div>}
-
           </div>
           <h1 className="text-5xl font-extrabold leading-normal text-gray-900 md:text-[5rem]">
             <p className="text-center">{question?.question.molecule}</p>

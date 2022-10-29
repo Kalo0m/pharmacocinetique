@@ -56,7 +56,6 @@ export const questionsRouter = router({
     });
 
     const skip2 = Math.floor(Math.random() * answersCount);
-    console.log(question.answer)
     let answers = await ctx.prisma.answer.findMany({
       take: 2,
       skip: skip2,
@@ -72,7 +71,6 @@ export const questionsRouter = router({
         }
       }
     })
-    console.log({ answers })
     answers = [...answers, question.answer]
     shuffleArray(answers)
 
@@ -82,6 +80,28 @@ export const questionsRouter = router({
     }
 
   }),
+  getCategories: publicProcedure.query(async ({ ctx }): Promise<string[]> => {
+    const categories = await ctx.prisma.question.findMany({
+      select: {
+        question: true
+      },
+      distinct: ['question']
+    })
+    return categories.map(c => c.question)
+  }),
+  saveResponse: publicProcedure.input(z.object({ value: z.boolean(), questionId: z.string() })).mutation(async ({ ctx: { prisma, req }, input: { value, questionId } }) => {
+    return prisma.result.create({
+      data: {
+        ip: req['headers']['x-forwarded-for']?.[0] ?? req.connection.remoteAddress ?? '',
+        result: value,
+        question: {
+          connect: {
+            id: questionId
+          }
+        }
+      }
+    })
+  })
 });
 function shuffleArray(array: unknown[]) {
   for (let i = array.length - 1; i > 0; i--) {

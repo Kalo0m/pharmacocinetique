@@ -18,6 +18,7 @@ model Question {
   question  String
   answer    Answer? @relation(fields: [answerId], references: [id])
   answerId  String? @unique
+  results   Result[]
 }
 
 model Answer {
@@ -27,4 +28,14 @@ model Answer {
   answer    String
   type      String
   question  Question?
+}
+
+model Result {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  result    Boolean
+  ip        String
+  question  Question @relation(fields: [questionId], references: [id])
+  questionId String
 }

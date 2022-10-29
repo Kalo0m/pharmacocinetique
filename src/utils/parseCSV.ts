@@ -58,7 +58,6 @@ export const parseCSVFile = async (fileName: string) => {
     });
     console.log(promises)
     await Promise.all(promises)
-
   })
 }
 
