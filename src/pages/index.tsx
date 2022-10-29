@@ -32,7 +32,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="mx-auto  flex min-h-screen w-screen flex-col bg-gray-900 items-between justify-between p-4">
+      <main className="mx-auto  flex min-h-screen w-screen flex-col bg-red-50 items-between justify-between p-4">
         {showSuccess && <div className="pyro">
           <div className="before"></div>
           <div className="after"></div>
@@ -41,18 +41,18 @@ const Home: NextPage = () => {
           <div style={{ animation: showSuccess || showFailure ? `bounce 1s ease` : '' }} className="h-36 mb-10 flex flex-col items-center">
             <p className="text-green-500 text-3xl font-bold">{showSuccess && 'Bravo'}</p>
             <p className="text-red-500 transition-all text-3xl scale-100 h-32 font-bold">{showFailure && 'IMT > Veto'}</p>
-            {(showSuccess || showFailure) && <div className="text-xl text-gray-300 h-32 font-semibold text-center">La bonne réponse était <p className="mt-3 text-blue-400 font-bold">{question.question?.answer?.answer}</p></div>}
+            {(showSuccess || showFailure) && <div className="text-lg text-gray-700 h-32 font-semibold text-center">La bonne réponse était <p className="mt-3 text-red-600 font-bold">{question.question?.answer?.answer}</p></div>}
 
           </div>
-          <h1 className="text-5xl font-extrabold leading-normal text-white md:text-[5rem]">
+          <h1 className="text-5xl font-extrabold leading-normal text-gray-900 md:text-[5rem]">
             <p className="text-center">{question?.question.molecule}</p>
           </h1>
-          <h1 className="text-3xl mb-10 font-semibold leading-normal text-white md:text-[3rem]">
+          <h1 className="text-3xl mb-10 font-semibold leading-normal text-gray-900 md:text-[3rem]">
             <p className="text-center">{question?.question.question}</p>
           </h1>
           <div className="lg:flex-row flex flex-col gap-4">
             {question?.answers.map((answer) => (
-              <button disabled={showSuccess || showFailure} onClick={() => onButtonClick(answer)} key={answer.id} className="inline-flex w-full justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-base font-medium text-white shadow-sm transition-all hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm">
+              <button disabled={showSuccess || showFailure} onClick={() => onButtonClick(answer)} key={answer.id} className="inline-flex w-full justify-center rounded-md border border-transparent bg-red-400 px-4 py-2 text-base font-medium text-white shadow-sm transition-all hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm">
                 {answer.answer}
               </button>
             ))}
