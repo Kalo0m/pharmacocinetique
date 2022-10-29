@@ -41,7 +41,7 @@ const Home: NextPage = () => {
           <div style={{ animation: showSuccess || showFailure ? `bounce 1s ease` : '' }} className="h-36 mb-10 flex flex-col items-center">
             <p className="text-green-500 text-3xl font-bold">{showSuccess && 'Bravo'}</p>
             <p className="text-red-500 transition-all text-3xl scale-100 h-32 font-bold">{showFailure && 'IMT > Veto'}</p>
-            {(showSuccess || showFailure) && <div className="text-lg text-gray-700 h-32 font-semibold text-center">La bonne réponse était <p className="mt-3 text-red-600 font-bold">{question.question?.answer?.answer}</p></div>}
+            {(showSuccess || showFailure) && <div className="text-lg text-gray-700 h-32 font-semibold text-center">La bonne réponse est <p className="mt-3 text-red-600 font-bold">{question.question?.answer?.answer}</p></div>}
 
           </div>
           <h1 className="text-5xl font-extrabold leading-normal text-gray-900 md:text-[5rem]">
