@@ -40,7 +40,7 @@ export const questionsRouter = router({
     });
     if (!question) throw new Error('No question found');
     if (!question.answer) throw new Error('No question\'s answer found');
-    const answersCount = await ctx.prisma.answer.count({
+    const answersCount = await ctx.prisma.answer.findMany({
       distinct: ['answer'],
       where: {
         type: {
@@ -56,7 +56,7 @@ export const questionsRouter = router({
       }
     });
 
-    const skip2 = Math.floor(Math.random() * answersCount);
+    const skip2 = Math.floor(Math.random() * answersCount.length);
     let answers = await ctx.prisma.answer.findMany({
       take: 2,
       skip: skip2,
