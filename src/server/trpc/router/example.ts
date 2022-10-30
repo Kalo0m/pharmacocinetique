@@ -41,13 +41,14 @@ export const questionsRouter = router({
     if (!question) throw new Error('No question found');
     if (!question.answer) throw new Error('No question\'s answer found');
     const answersCount = await ctx.prisma.answer.count({
+      distinct: ['answer'],
       where: {
         type: {
           equals: question.answer.type
 
         },
         answer: {
-          not: '',
+          notIn: ['', question.answer.answer],
         },
         id: {
           not: question.answer.id
@@ -59,17 +60,20 @@ export const questionsRouter = router({
     let answers = await ctx.prisma.answer.findMany({
       take: 2,
       skip: skip2,
+      distinct: ['answer'],
       where: {
         type: {
           equals: question.answer.type
+
         },
         answer: {
-          not: '',
+          notIn: ['', question.answer.answer],
         },
         id: {
           not: question.answer.id
         }
       }
+
     })
     answers = [...answers, question.answer]
     shuffleArray(answers)
