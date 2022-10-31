@@ -177,7 +177,6 @@ const Home: NextPage = () => {
       <main className="mx-auto  flex min-h-screen w-screen flex-col bg-red-50 items-between justify-between p-4">
         {strike > 0 && <p className=" fixed top-5 right-5 text-2xl font-semibold">🔥 Serie en cours : {strike}</p>}
         <div className="flex-grow flex flex-col items-center justify-center">
-          {question?.question?.answer?.answer ?? ''}
 
           <div style={{ animation: showSuccess || showFailure ? `bounce 1s ease` : '' }} className="h-36 mb-10 flex flex-col items-center">
             <p className="text-green-500 text-3xl font-bold">{showSuccess && 'Bravo'}</p>
