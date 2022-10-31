@@ -7,12 +7,14 @@ specifiers:
   '@trpc/next': 10.0.0-rc.0
   '@trpc/react-query': 10.0.0-rc.0
   '@trpc/server': 10.0.0-rc.0
+  '@types/canvas-confetti': ^1.4.3
   '@types/node': 18.0.0
   '@types/react': 18.0.14
   '@types/react-dom': 18.0.5
   '@typescript-eslint/eslint-plugin': ^5.33.0
   '@typescript-eslint/parser': ^5.33.0
   autoprefixer: ^10.4.7
+  canvas-confetti: ^1.6.0
   csv-parse: ^5.3.1
   eslint: 8.22.0
   eslint-config-next: 12.3.1
@@ -36,6 +38,7 @@ dependencies:
   '@trpc/next': 10.0.0-rc.0_yhe74cpnx27jwqfypzwl76x4by
   '@trpc/react-query': 10.0.0-rc.0_kv5kvek3wo2lmbs7gydz3ad7uu
   '@trpc/server': 10.0.0-rc.0
+  canvas-confetti: 1.6.0
   csv-parse: 5.3.1
   next: 12.3.1_2mygebwfgdyopr3fy2qddu2eli
   react: 18.2.0
@@ -45,6 +48,7 @@ dependencies:
   zod: 3.19.1
 
 devDependencies:
+  '@types/canvas-confetti': 1.4.3
   '@types/node': 18.0.0
   '@types/react': 18.0.14
   '@types/react-dom': 18.0.5
@@ -363,6 +367,10 @@ packages:
   /@trpc/server/10.0.0-rc.0:
     resolution: {integrity: sha512-rLVnHrhrTM4xBheIfqtH1QojgWRCOSbJRw7wr6SVB3yRjCCsU+AZnSrhchMLuDW7Q59r+x3rpH3Wd6BlkydWWg==}
     dev: false
+
+  /@types/canvas-confetti/1.4.3:
+    resolution: {integrity: sha512-UwFPTsW1ZwVyo/ETp4hPSikSD7yl2V42E3VWBF5P/0+DHO4iajyceWv7hfNdZ2AX5tkZnuViiBWOqyCPohU2FQ==}
+    dev: true
 
   /@types/json-schema/7.0.11:
     resolution: {integrity: sha512-wOuvG1SN4Us4rez+tylwwwCV1psiNVOkJeM3AUWUNWg/jDQY2+HE/444y5gc+jBmRqASOm2Oeh5c1axHobwRKQ==}
@@ -723,6 +731,10 @@ packages:
 
   /caniuse-lite/1.0.30001426:
     resolution: {integrity: sha512-n7cosrHLl8AWt0wwZw/PJZgUg3lV0gk9LMI7ikGJwhyhgsd2Nb65vKvmSexCqq/J7rbH3mFG6yZZiPR5dLPW5A==}
+
+  /canvas-confetti/1.6.0:
+    resolution: {integrity: sha512-ej+w/m8Jzpv9Z7W7uJZer14Ke8P2ogsjg4ZMGIuq4iqUOqY2Jq8BNW42iGmNfRwREaaEfFIczLuZZiEVSYNHAA==}
+    dev: false
 
   /chalk/4.1.2:
     resolution: {integrity: sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==}

@@ -3,12 +3,55 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import { useState } from "react";
 import { trpc } from "../utils/trpc";
+import confetti from 'canvas-confetti'
+
+function infiniteFirework() {
+  const duration = 5 * 1000;
+  const animationEnd = Date.now() + duration;
+  const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+  function randomInRange(min: any, max: any) {
+    return Math.random() * (max - min) + min;
+  }
+
+  const interval: any = setInterval(function () {
+    const timeLeft = animationEnd - Date.now();
+
+    if (timeLeft <= 0) {
+      return clearInterval(interval);
+    }
+
+    const particleCount = 50 * (timeLeft / duration);
+    // since particles fall down, start a bit higher than random
+    confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
+    confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
+  }, 250);
+}
+
+function runFirework() {
+  const count = 200;
+  const defaults = {
+    origin: { y: 0.7 }
+  };
+
+  function fire(particleRatio: any, opts: any) {
+    confetti(Object.assign({}, defaults, opts, {
+      particleCount: Math.floor(count)
+    }));
+  }
+
+  fire(0.25, {
+    spread: 26,
+    startVelocity: 55,
+  });
+
+}
 
 const Home: NextPage = () => {
   const { data: question, refetch, isLoading } = trpc.questions.getQuestion.useQuery(undefined, { refetchOnWindowFocus: false });
   const { data: categories } = trpc.questions.getCategories.useQuery();
   const mutation = trpc.questions.saveResponse.useMutation();
-
+  const [strike, setStrike] = useState(0)
   const [showSuccess, setShowSuccess] = useState(false);
   const [showFailure, setShowFailure] = useState(false);
   // const { data, refetch: refetchSave } = trpc.questions.saveResponse.useQuery({ value:  }, {
@@ -16,11 +59,19 @@ const Home: NextPage = () => {
   //   enabled: false // disable this query from automatically running
   // });
   const onButtonClick = (answer: Answer) => {
+
+
     if (!question) return;
     if (answer.id === question.question?.answer?.id) {
       setShowSuccess(true);
+      if (strike >= 2) infiniteFirework()
+      else runFirework()
+      setStrike(strike + 1)
     }
-    else setShowFailure(true);
+    else {
+      setShowFailure(true);
+      setStrike(0)
+    }
     mutation.mutate({ value: answer.id === question.question?.answer?.id, questionId: question.question?.id });
     setTimeout(() => {
       setShowFailure(false);
@@ -40,10 +91,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main className="mx-auto  flex min-h-screen w-screen flex-col bg-red-50 items-between justify-between p-4">
-        {showSuccess && <div className="pyro">
-          <div className="before"></div>
-          <div className="after"></div>
-        </div>}
+        {strike > 0 && <p className=" fixed top-5 right-5 text-2xl font-semibold">🔥 Serie en cours : {strike}</p>}
         <div className="flex-grow flex flex-col items-center justify-center">
           <div style={{ animation: showSuccess || showFailure ? `bounce 1s ease` : '' }} className="h-36 mb-10 flex flex-col items-center">
             <p className="text-green-500 text-3xl font-bold">{showSuccess && 'Bravo'}</p>
