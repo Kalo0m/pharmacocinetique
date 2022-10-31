@@ -3,8 +3,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import { useState } from "react";
 import { trpc } from "../utils/trpc";
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const confetti = require('canvas-confetti')
+import confetti from 'canvas-confetti';
 
 function infiniteFirework() {
   const duration = 5 * 1000;
