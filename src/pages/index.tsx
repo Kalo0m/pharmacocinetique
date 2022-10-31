@@ -36,7 +36,7 @@ function runFirework() {
 
   function fire(particleRatio: any, opts: any) {
     confetti(Object.assign({}, defaults, opts, {
-      particleCount: Math.floor(count)
+      particleCount: Math.floor(count * particleRatio)
     }));
   }
 
@@ -44,9 +44,86 @@ function runFirework() {
     spread: 26,
     startVelocity: 55,
   });
+  fire(0.2, {
+    spread: 60,
+  });
+  fire(0.35, {
+    spread: 100,
+    decay: 0.91,
+    scalar: 0.8
+  });
+  fire(0.1, {
+    spread: 120,
+    startVelocity: 25,
+    decay: 0.92,
+    scalar: 1.2
+  });
+  fire(0.1, {
+    spread: 120,
+    startVelocity: 45,
+  });
 
 }
+function runHighSchool() {
+  const end = Date.now() + (5 * 1000);
 
+  // go Buckeyes!
+  const colors = ['#bb0000', '#ffffff'];
+
+  (function frame() {
+    confetti({
+      particleCount: 2,
+      angle: 60,
+      spread: 55,
+      origin: { x: 0 },
+      colors: colors
+    });
+    confetti({
+      particleCount: 2,
+      angle: 120,
+      spread: 55,
+      origin: { x: 1 },
+      colors: colors
+    });
+
+    if (Date.now() < end) {
+      requestAnimationFrame(frame);
+    }
+  }());
+}
+function runStars() {
+  const defaults = {
+    spread: 360,
+    ticks: 50,
+    gravity: 0,
+    decay: 0.94,
+    startVelocity: 30,
+    shapes: ['star'],
+    colors: ['FFE400', 'FFBD00', 'E89400', 'FFCA6C', 'FDFFB8']
+  };
+
+  function shoot() {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    confetti({
+      ...defaults,
+      particleCount: 40,
+      scalar: 1.2,
+      shapes: ['star']
+    });
+
+    confetti({
+      ...defaults,
+      particleCount: 10,
+      scalar: 0.75,
+      shapes: ['circle']
+    });
+  }
+
+  setTimeout(shoot, 0);
+  setTimeout(shoot, 100);
+  setTimeout(shoot, 200);
+}
 const Home: NextPage = () => {
   const { data: question, refetch, isLoading } = trpc.questions.getQuestion.useQuery(undefined, { refetchOnWindowFocus: false });
   const { data: categories } = trpc.questions.getCategories.useQuery();
@@ -64,7 +141,13 @@ const Home: NextPage = () => {
     if (!question) return;
     if (answer.id === question.question?.answer?.id) {
       setShowSuccess(true);
-      if (strike >= 2) infiniteFirework()
+      if (strike >= 2 && strike < 4) infiniteFirework()
+      else if (strike >= 4 && strike < 7) runStars()
+      else if (strike >= 7) {
+        runHighSchool()
+        runStars()
+        infiniteFirework()
+      }
       else runFirework()
       setStrike(strike + 1)
     }
@@ -93,6 +176,8 @@ const Home: NextPage = () => {
       <main className="mx-auto  flex min-h-screen w-screen flex-col bg-red-50 items-between justify-between p-4">
         {strike > 0 && <p className=" fixed top-5 right-5 text-2xl font-semibold">🔥 Serie en cours : {strike}</p>}
         <div className="flex-grow flex flex-col items-center justify-center">
+          {question?.question?.answer?.answer ?? ''}
+
           <div style={{ animation: showSuccess || showFailure ? `bounce 1s ease` : '' }} className="h-36 mb-10 flex flex-col items-center">
             <p className="text-green-500 text-3xl font-bold">{showSuccess && 'Bravo'}</p>
             <p className="text-red-500 transition-all text-3xl scale-100 h-32 font-bold">{showFailure && 'IMT > Veto'}</p>
