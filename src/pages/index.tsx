@@ -3,7 +3,8 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import { useState } from "react";
 import { trpc } from "../utils/trpc";
-import confetti from 'canvas-confetti'
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const confetti = require('canvas-confetti')
 
 function infiniteFirework() {
   const duration = 5 * 1000;
@@ -103,13 +104,14 @@ function runStars() {
   };
 
   function shoot() {
+    const newLocal = 'star';
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     confetti({
       ...defaults,
       particleCount: 40,
       scalar: 1.2,
-      shapes: ['star']
+      shapes: [newLocal]
     });
 
     confetti({
