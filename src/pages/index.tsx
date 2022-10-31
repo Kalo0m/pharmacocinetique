@@ -142,7 +142,7 @@ const Home: NextPage = () => {
     if (answer.id === question.question?.answer?.id) {
       setShowSuccess(true);
       if (strike >= 2 && strike < 4) infiniteFirework()
-      else if (strike >= 4 && strike < 7) runStars()
+      else if (strike >= 4 && strike <= 6) runStars()
       else if (strike >= 7) {
         runHighSchool()
         runStars()
