@@ -1,9 +1,8 @@
-,,β-lactamines,,,,,,Antibiotiques de rang A Rang C,,,,,,,,,,,
-,,PENICILLINES,PENICILLINES,PENICILLINES,CEPHALOSPORINES,CEPHALOSPORINES,CEPHALOSPORINES,Tétracyclines (naturelles),Sulfamides,Diaminopyridines,Macrolides et apparentés (tensio-actif ???),Macrolides et apparentés (tensio-actif ???),Macrolides et apparentés (tensio-actif ???),Rang A,Rang A,Rang B,QUINOLONES – Rang A,QUINOLONES – Rang A,QUINOLONES – Rang A
-,,Pénicilline G,Pénicilline M,Pénicilline A,C1G (& C2G),C3G,C4G,,,,Macrolides,Lincosamides,Synergistines,Aminosides (aminocylitols),Phénicols,Nitro-imidazoles,Q1G,Q2G (fluorés),Q3G
+,PENICILLINES,PENICILLINES,PENICILLINES,CEPHALOSPORINES,CEPHALOSPORINES,CEPHALOSPORINES,Tétracyclines (naturelles),Sulfamides,Diaminopyridines,Macrolides et apparentés,Macrolides et apparentés,Macrolides et apparentés,Rang A,Rang A,Rang B,QUINOLONES – Rang A,QUINOLONES – Rang A,QUINOLONES – Rang A,Azolés antifongiques,Azolés antifongiques,ANTIBIOTIQUES ANTIFONGIQUES,ANTIBIOTIQUES ANTIFONGIQUES
+,Pénicilline G,Pénicilline M,Pénicilline A,C1G (& C2G),C3G,C4G,,,,Macrolides,Lincosamides,Synergistines,Aminosides (aminocylitols),Phénicols,Nitro-imidazoles,Q1G,Q2G (fluorés),Q3G,Azolés antifongiques,Azolés antifongiques,Griséofulvine,AB polyéniques
 "Molécules
- (nom déposé)",,"Pénéthamate
- Benzilpéniciline","Oxacilline
+ (nom déposé)","Pénéthamate
+ Benzylpéniciline","Oxacilline
  Cloxacilline
  Nafcilline
  Orbénin","Amoxicilline (clamoxyl)
@@ -62,26 +61,29 @@
  Norfloxacine
  
 
- Q4G : pradofloxacine (fait les aérobies)"
-Mécanisme,,"BACTERICIDE / Tps dépendant
- (blocage synthèse paroi)",,"BACTERICIDE / Tps dépendant (pas E.Coli)
- (blocage synthèse paroi)","BACTERICIDE – Tps dépendant
- (blocage synthèse paroi)","BACTERICIDE – Tps dépendant
- (blocage synthèse paroi)","BACTERICIDE – Tps dépendant
- (blocage synthèse paroi)","Bactériostatique – Tps dépendant
- (blocage synthèse protéines)","Bactériostatique – Tps dépendant 
- (blocage acide folique)",,"Bactériostatique 
- Tps dépendant
- (inhibe biosynthèse protéique)","Bactériostatique
- Tps dépendant",Bactériostatique,"Bactéricide (sauf spectinomycine)
+ Q4G : pradofloxacine (fait les aérobies)","Imidazolés :
+ Kétoconazole
+ Enilconazole
+ Miconazole (gram+)
+ Parconazole
+ Clotrimazone","Triazolés : 
+ Itraconazole Posaconazole
+ Fluconazole
+ Voriconazole","Griséofulvine
+ (Dermogine, Fulviderm)","Amphotéricine B
+ Nystatine
+ Natamycine"
+Mécanisme,BACTERICIDE / Tps dépendant (blocage synthèse paroi),,"BACTERICIDE / Tps dépendant (pas E.Coli)
+ (blocage synthèse paroi)",BACTERICIDE / Tps dépendant (blocage synthèse paroi),BACTERICIDE / Tps dépendant (blocage synthèse paroi),BACTERICIDE / Tps dépendant (blocage synthèse paroi),Bactériostatique / Tps dépendant (blocage synthèse protéines),"Bactériostatique / Tps dépendant 
+ (blocage acide folique)",,Bactériostatique / Tps dépendant (inhibe biosynthèse protéique),Bactériostatique / Tps dépendant,Bactériostatique,"Bactéricide (sauf spectinomycine)
  Concentration dépendante
- (blocage synthèse protéines + perméabilité membrane)","Bactériostatique (blocage synthèse proteines)
- Temps-dépendant","Bactéricide
- (Protisticide)","Bactéricide (multiplication) – Cc dépendant sur Gram-
+ (blocage synthèse protéines + perméabilité membrane)",Bactériostatique / Tps dépendant (blocage synthèse proteines),Bactéricide (Protisticide),"Bactéricide (multiplication) – Cc dépendant sur Gram-
  (blocage transcription ADN/réplication de l’ADN par action sur les ADN-topoisomérases de type II)","Bactéricide (multiplication) – Cc dépendant sur Gram-
  (blocage transcription ADN/réplication de l’ADN par action sur les ADN-topoisomérases de type II)","Bactéricide (multiplication) – Cc dépendant sur Gram-
- (blocage transcription ADN/réplication de l’ADN par action sur les ADN-topoisomérases de type II)"
-Spectre naturel,,"Etroit
+ (blocage transcription ADN/réplication de l’ADN par action sur les ADN-topoisomérases de type II)","Fongicide 
+ Blocage synthèse ergostérol : perméabilité membrane altérée","Fongicide 
+ Blocage synthèse ergostérol : perméabilité membrane altérée",Inhibition mitose des champignons,Perméabilité membrane altérée
+Spectre naturel,"Etroit
  Gram+
  Pasteurella","Etroit
  Gram +","Large
@@ -93,14 +95,20 @@ Spectre naturel,,"Etroit
  Gram +/- / Coccidie","Large
  Gram +/- / Coccidie","Etroit / Gram +
  Pasteurella / Mycoplasme","Etroit / Gram +
- Mycoplasme",Etroit / Gram +,"Large (gram+ ??)
- Gram - / surtt Staph (pas anaérobies)","Large / Gram +/- 
+ Mycoplasme",Etroit / Gram +,Large / surtt Staph (pas anaérobies),"Large / Gram +/- 
  Pasteurella / Mycoplasmes / Rickettsies","Large / Gram +/-
  PATH. ANAEROBIES","Etroit
  Gram - aérobies","Large
  Gram +/- aérobies","Large / Gram +/-
- Mycoplasme"
-Espèces sensibles,,"Clostridium
+ Mycoplasme","Dermatophytes (Microsporum, Trichophyton), teignes
+ Candida, Aspergillus, Malassezia
+ Spores fongiques (Hors AMM)","Dermatophytes (Microsporum, Trichophyton), teignes
+ Candida, Aspergillus, Malassezia
+ Spores fongiques (Hors AMM)","Dermatophytes,
+ (Microsporum, Epidermophyton, Trichophyton), teignes","Candida
+ Aspergillus (Amphotéricine B)
+ Malassezia"
+Espèces sensibles,"Clostridium
  Staph (B lactamase -)
  Pasteurella multocida","Staph (tous)
  Strepto","Clostridium
@@ -151,8 +159,12 @@ Espèces sensibles,,"Clostridium
 
  + Trichomonas, Histomonas, Giardia","Pasteurella Salmonella 
  E. Coli 
- Klebsilla",#NAME?,#NAME?
-PK : A,,"Parentérale mais pas de forme IV véto
+ Klebsilla",#NAME?,#NAME?,"Voie externe (enilconazole)
+ et systémique","Voie externe (enilconazole)
+ et systémique","Orale ++
+ Action systémique
+ (améliorée par ration riche en lipides)",Faible à nulle par voie orale
+PK : A,"Parentérale mais pas de forme IV véto
  (orale nulle)",Orale + parentérale,,"Parentérale 
  (orale médiocre sauf céfalexine et céfadroxil)","Parentérale 
  (orale médiocre sauf céfalexine et céfadroxil)","Parentérale 
@@ -165,8 +177,11 @@ PK : A,,"Parentérale mais pas de forme IV véto
  Parentérale +",Orale uniquement,"Orale habituellement ++ (variable)
  Parentérale ++ (IV possible)","Orale habituellement ++ (variable)
  Parentérale ++ (IV possible)","Orale habituellement ++ (variable)
- Parentérale ++ (IV possible)"
-PK : D/M,,"Acide - Lipophile - Extracellulaire 
+ Parentérale ++ (IV possible)","Large
+ Peau, TA ++","Large
+ Peau, TA ++","Peau / Phanères 
+ Association aux kératinocytes",
+PK : D/M,"Acide - Lipophile - Extracellulaire 
  Sauf Pénéthamate intracellulaire car ester de pén. G
  Organe vasc ++ / Passe la barrière hémato-méningée",,,Acide – lipophile - Extracellulaire,Acide – lipophile - Extracellulaire,Acide – lipophile - Extracellulaire,"Extra et intra cellulaire
  Vasc ++ / CALCIUM ++","Extracellulaire (~acide)
@@ -181,15 +196,43 @@ PK : D/M,,"Acide - Lipophile - Extracellulaire
  SNC, LCR ++","Base faible
  Intracellulaire
  LCR ++","Extracellulaire
- Vasc ++",Extracellulaire et intracellulaire,Extracellulaire et intracellulaire
-PK : E,,Rénale active inchangée,Rénale (toutes) + biliaire (ampicilline ++),,"Rénale rapide (sauf céfovécine, E très lente)","Rénale rapide (sauf céfovécine, E très lente)","Rénale rapide (sauf céfovécine, E très lente)","Rénale +++
+ Vasc ++",Extracellulaire et intracellulaire,Extracellulaire et intracellulaire,"Métabo hépatique ++
+ Biliaire ++, urinaire (fluconazole)","Métabo hépatique ++
+ Biliaire ++, urinaire (fluconazole)",Rénale,
+PK : E,Rénale active inchangée,Rénale (toutes) + biliaire (ampicilline ++),,"Rénale rapide (sauf céfovécine, E très lente)","Rénale rapide (sauf céfovécine, E très lente)","Rénale rapide (sauf céfovécine, E très lente)","Rénale +++
   Bile + (doxycycline)","Rénale +++
  Concentré dans les urines","Carn : rénale +++
  Herb : biliaire","Bile +++ 
  Cycle entéro-hépatique (spiramycine +)","Bile +++ 
- Cycle entéro-hépatique (spiramycine +)",,Rénale inchangée,Bile +++ / Rénale,Digestive ++ / Urinaire/Biliaire,Rénale : cc dans les urines +++ (+ biliaire G2/G3),Rénale : cc dans les urines +++ (+ biliaire G2/G3),Rénale : cc dans les urines +++ (+ biliaire G2/G3)
+ Cycle entéro-hépatique (spiramycine +)",,Rénale inchangée,Bile +++ / Rénale,Digestive ++ / Urinaire/Biliaire,Rénale : cc dans les urines +++ (+ biliaire G2/G3),Rénale : cc dans les urines +++ (+ biliaire G2/G3),Rénale : cc dans les urines +++ (+ biliaire G2/G3),"Bonne voie topique / Moyenne voie géné
+ Pas chez insuffisant hépatique
+ Pas kétaconazole chez le Chat
+ Itraconazole que chez le Chat et pas avec la Céfovicine 
+ Pas avec AB ionophores, anti-acides ou anti-histaminiques, ciclosporine
+ Risques pour l’utilisateur
+ Tératogène et embryotoxique
+ Interactions médicamenteuses car action sur cytochrome P450 (système oxydatif hépatique qui métabolise certains médicaments) et aussi inhibe les P-GP (BHM pompes d’efflux)
+ Nausées, anorexie, vomissements voire symptômes neuro (chat)
+ Infertilité pour les 2 sexes (chien)","Bonne voie topique / Moyenne voie géné
+ Pas chez insuffisant hépatique
+ Pas kétaconazole chez le Chat
+ Itraconazole que chez le Chat et pas avec la Céfovicine 
+ Pas avec AB ionophores, anti-acides ou anti-histaminiques, ciclosporine
+ Risques pour l’utilisateur
+ Tératogène et embryotoxique
+ Interactions médicamenteuses car action sur cytochrome P450 (système oxydatif hépatique qui métabolise certains médicaments) et aussi inhibe les P-GP (BHM pompes d’efflux)
+ Nausées, anorexie, vomissements voire symptômes neuro (chat)
+ Infertilité pour les 2 sexes (chien)","Pas pendant la gestation
+ Moins bonne chez le Chat (risque de leucopénie, anémie, atteinte nerveuse)
+ Tératogène
+ Risque de troubles gastro-intestinaux voire atteinte hépatique
+ Risque d’infertilité (que mâles : spermatogenèse)
+ Posologie > AMM","FORTE PAR VOIE GENERALE
+ Néphrotoxicité"
 "Toxicité
- Contre-indications",,TRES FAIBLE,TRES FAIBLE,TRES FAIBLE,PEU TOXIQUE,,,"Faible : intolérance locale, TD/dysbiose Cv, malformation dentaires, néphrotoxicité pour les sulfamides (volailles mais pas chien qui n’acétyle pas, plus le cas maintenant pour les tétracyclines)
+",TRES FAIBLE,TRES FAIBLE,TRES FAIBLE,TRES FAIBLE,"PEU TOXIQUE 
+ MAIS AB CRITIQUES","PEU TOXIQUE 
+ MAIS AB CRITIQUES","Faible : intolérance locale, TD/dysbiose Cv, malformation dentaires, néphrotoxicité pour les sulfamides (volailles mais pas chien qui n’acétyle pas, plus le cas maintenant pour les tétracyclines)
  Pas chez Cv, femelles gestante, jeunes animaux","Faible : intolérance locale, TD/dysbiose Cv, malformation dentaires, néphrotoxicité pour les sulfamides (volailles mais pas chien qui n’acétyle pas, plus le cas maintenant pour les tétracyclines)
  Pas chez Cv, femelles gestante, jeunes animaux",Quasi nulle,"Faible :intolérance, TD, cardiotoxicité tilmicosine
  PAS chez le Cv","Faible
@@ -203,12 +246,10 @@ PK : E,,Rénale active inchangée,Rénale (toutes) + biliaire (ampicilline ++),,
  PAS CHEZ A.E","QUASI NULLE
  Intolérance, convulsions, atteinte rétinienne, atteinte nerveuse si surdosage, dégénérescence cartilages articulaires, inhibition P450","QUASI NULLE
  Intolérance, convulsions, atteinte rétinienne, atteinte nerveuse si surdosage, dégénérescence cartilages articulaires, inhibition P450","QUASI NULLE
- Intolérance, convulsions, atteinte rétinienne, atteinte nerveuse si surdosage, dégénérescence cartilages articulaires, inhibition P450"
-,,"Entérocolite dysentériforme (Cobaye/Hamster)
+ Intolérance, convulsions, atteinte rétinienne, atteinte nerveuse si surdosage, dégénérescence cartilages articulaires, inhibition P450",,,,
+Contre-indications,"Entérocolite dysentériforme (Cobaye/Hamster)
  Hypersensibilité chez l’homme",,"Désordre digestif Cv
- Colite mortelle Lago/rongeurs",,"PEU TOXIQUE 
- MAIS AB CRITIQUES","PEU TOXIQUE 
- MAIS AB CRITIQUES","Nombreuses plasmidiques
+ Colite mortelle Lago/rongeurs",,,,"Nombreuses plasmidiques
  Pseudomonas","Plasmidique
  Pseudomonas","Nombreuses : plasmidiques et chromosomiques
  Pseudomonas","Plasmidique 
@@ -222,8 +263,8 @@ PK : E,,Rénale active inchangée,Rénale (toutes) + biliaire (ampicilline ++),,
  Pathogènes aérobies","Chromosomiques – Croisées
  Bactéries anaérobies (Clostridium, certains Strepto comme uberis)","Chromosomiques – Croisées
  Bactéries anaérobies (Clostridium, certains Strepto comme uberis)","Chromosomiques – Croisées
- Bactéries anaérobies (Clostridium, certains Strepto comme uberis)"
-Résistances,,"Plasmidique
+ Bactéries anaérobies (Clostridium, certains Strepto comme uberis)",,,,
+Résistances,"Plasmidique
  Staph B lactamase
  Staph méti-R","Plasmidique 
  E. Coli / Salmonella /Pseudomonas / Staph Méti-R","Staph B lactamase
@@ -234,8 +275,8 @@ Résistances,,"Plasmidique
  Bactéricide actif REPOS
  Pas quinolone",Triméthoprime : effet bactéricide extraC,"Jamais seul 
  Sulfamide
- Association = bactéricide extracellulaire","PAS avec Bcide en croissance, ni phénicols",PAS Bcide en croissance (Blactamines),,Pénicilline / spectinomycine + lincomysine,B. statiques (tétracyclines) ou bcide repos,Spiramycine,β-lactamines,β-lactamines,β-lactamines
-Associations,,,,Acide clavulanique (inhibiteur béta-lactamase),,,,"Inf générales et locales
+ Association = bactéricide extracellulaire","PAS avec Bcide en croissance, ni phénicols",PAS Bcide en croissance (Blactamines),,Pénicilline / spectinomycine + lincomysine,B. statiques (tétracyclines) ou bcide repos,Spiramycine,β-lactamines,β-lactamines,β-lactamines,,,,
+Associations,,,Acide clavulanique (inhibiteur béta-lactamase),,,,"Inf générales et locales
  Mycoplasmose, histomonose","Sepsis, inf broncho-pulmonaires, digestives, urinaires, mammaires,
  Panaris interdigité / coccidioses
  Attention entérocoque : pas tjrs sensible in vivo","Sepsis, inf broncho-pulmonaires, digestives, urinaires, mammaires,
@@ -243,4 +284,16 @@ Associations,,,,Acide clavulanique (inhibiteur béta-lactamase),,,,"Inf généra
  Attention entérocoque : pas tjrs sensible in vivo",Mycoplasmose/Pasteurellose respi / Rhodoccose poulain / Mammite Gram + / inf bucco-dentaire,Mammite Gram+ / mycoplasmose / stapyloccocies et inf bucco-dentaire (carn),Utilisation uniquement en humaine,"Générale : sepsis, pasteurelloses, cystites
  Locale : entérites, mammites, cystites, otites, inf oculaire, cutanées","Pasteurellose (Bv), Pleuropneumonie (Pc), Cystites, conjonctivites, kératites, otites (Carn)","Carnivores + pigeons
  Inf. bucco-dentaires anaérobies / Giardiose (seule AMM) / Trichomonose","Infections urinaires, digestives, cutanées",#ERROR!,"AB CRITIQUES
- A éviter en MV"
+ A éviter en MV","Dermatophytoses (Cn/Ca)
+ Candidoses digestives (pintade)
+ Utilisation hors AMM sur bcp de pathologies
+ Otites fongiques
+ Kétaconazole = Chien
+ Itraconazole = Chat (car persistance dans la peau, traitement qu’1 semaine sur 2)","Dermatophytoses (Cn/Ca)
+ Candidoses digestives (pintade)
+ Utilisation hors AMM sur bcp de pathologies
+ Otites fongiques
+ Kétaconazole = Chien
+ Itraconazole = Chat (car persistance dans la peau, traitement qu’1 semaine sur 2)",Pour tous : on traite avec des antifongiques après un diagnostic de CERTITUDE,"Amphotéricine B pas d’AMM
+ Nystatine pour les otites fongiques
+ Utilisation uniquement locale"

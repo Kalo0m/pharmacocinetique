@@ -6,10 +6,19 @@ const prisma =
     log: ["query", "error", "warn"]
   });
 
-export const parseCSVFile = async (fileName: string) => {
-  const fileContent = fs.readFileSync(fileName, { encoding: 'utf-8' });
+export const parseCSVFile = async () => {
+  const category = process.argv.slice(2)[0]
+  if (!category) {
+    throw Error('No category provided');
+  }
+
+  if (process.argv.slice(2)[1] == '--truncate') {
+    await prisma.question.deleteMany({ where: { category: category } });
+  }
+
+  const fileContent = fs.readFileSync(`./src/utils/${category}.csv`, { encoding: 'utf-8' });
   parse(fileContent, {
-    delimiter: ';',
+    delimiter: ',',
   }, async (error, result: any[]) => {
     if (error) {
       console.error(error);
@@ -39,7 +48,7 @@ export const parseCSVFile = async (fileName: string) => {
           data: {
             molecule: q.group ? q.group + ' ' + q.mol : q.mol,
             question: key ?? '',
-
+            category
           }
         })
         return prisma.answer.create({
@@ -54,13 +63,11 @@ export const parseCSVFile = async (fileName: string) => {
           }
         })
       })
-
     });
     console.log(promises)
     await Promise.all(promises)
   })
 }
-
-parseCSVFile('./src/utils/questions2.csv')
+parseCSVFile()
 
 

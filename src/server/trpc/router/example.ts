@@ -1,9 +1,9 @@
 import { router, publicProcedure } from "../trpc";
 import { z } from "zod";
 import { Answer, Question } from "@prisma/client";
-import { notEqual } from "assert";
+import { CallTracker, notEqual } from "assert";
 
-type QuestionResponse = {
+export type QuestionResponse = {
   question: Question & {
     answer: Answer | null;
   }
@@ -19,71 +19,88 @@ export const questionsRouter = router({
   //       greeting: `Hello ${input?.text ?? "world"}`,
   //     };
   //   }),
-  getQuestion: publicProcedure.query(async ({ ctx }): Promise<QuestionResponse> => {
-    const productsCount = await ctx.prisma.question.count();
-    const skip = Math.floor(Math.random() * productsCount);
-    const question = await ctx.prisma.question.findFirst({
-      skip,
-      include: {
-        answer: true,
-      },
-      where: {
-        answer: {
+  getQuestion: publicProcedure.input(z
+    .object({
+      game: z.string()
+    })).query(async ({ ctx, input: { game } }): Promise<QuestionResponse> => {
+      const productsCount = await ctx.prisma.question.count({
+        where: {
           answer: {
-            not: '',
+            answer: {
+              not: '',
+            }
+          },
+          category: {
+            equals: game
+          }
+        },
+      });
+      const skip = Math.floor(Math.random() * productsCount);
+      const question = await ctx.prisma.question.findFirst({
+        skip,
+        include: {
+          answer: true,
+        },
+        where: {
+          answer: {
+            answer: {
+              not: '',
+            }
+          },
+          category: {
+            equals: game
+          }
+        },
+        orderBy: {
+          id: 'desc',
+        },
+      });
+      if (!question) throw new Error('No question found');
+      if (!question.answer) throw new Error('No question\'s answer found');
+      const answersCount = await ctx.prisma.answer.findMany({
+        distinct: ['answer'],
+        where: {
+          type: {
+            equals: question.answer.type
+
+          },
+          answer: {
+            notIn: ['', question.answer.answer],
+          },
+          id: {
+            not: question.answer.id
           }
         }
-      },
-      orderBy: {
-        id: 'desc',
-      },
-    });
-    if (!question) throw new Error('No question found');
-    if (!question.answer) throw new Error('No question\'s answer found');
-    const answersCount = await ctx.prisma.answer.findMany({
-      distinct: ['answer'],
-      where: {
-        type: {
-          equals: question.answer.type
+      });
 
-        },
-        answer: {
-          notIn: ['', question.answer.answer],
-        },
-        id: {
-          not: question.answer.id
+      const skip2 = Math.floor(Math.random() * answersCount.length);
+      let answers = await ctx.prisma.answer.findMany({
+        take: 2,
+        skip: skip2,
+        distinct: ['answer'],
+        where: {
+          type: {
+            equals: question.answer.type
+
+          },
+          answer: {
+            notIn: ['', question.answer.answer],
+          },
+          id: {
+            not: question.answer.id
+          }
         }
-      }
-    });
 
-    const skip2 = Math.floor(Math.random() * answersCount.length);
-    let answers = await ctx.prisma.answer.findMany({
-      take: 2,
-      skip: skip2,
-      distinct: ['answer'],
-      where: {
-        type: {
-          equals: question.answer.type
+      })
+      answers = [...answers, question.answer]
+      shuffleArray(answers)
 
-        },
-        answer: {
-          notIn: ['', question.answer.answer],
-        },
-        id: {
-          not: question.answer.id
-        }
+      return {
+        question,
+        answers
       }
 
-    })
-    answers = [...answers, question.answer]
-    shuffleArray(answers)
-
-    return {
-      question,
-      answers
-    }
-
-  }),
+    }),
   getCategories: publicProcedure.query(async ({ ctx }): Promise<string[]> => {
     const categories = await ctx.prisma.question.findMany({
       select: {
@@ -94,7 +111,6 @@ export const questionsRouter = router({
     return categories.map(c => c.question)
   }),
   saveResponse: publicProcedure.input(z.object({ value: z.boolean(), questionId: z.string() })).mutation(async ({ ctx: { prisma, req }, input: { value, questionId } }) => {
-
     let ipBis = req.headers['x-forwarded-for']
     if (typeof ipBis !== 'string') { ipBis = ipBis?.[0] ?? '' }
 
