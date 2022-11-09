@@ -23,6 +23,7 @@ export const questionsRouter = router({
     .object({
       game: z.string()
     })).query(async ({ ctx, input: { game } }): Promise<QuestionResponse> => {
+      const debut = new Date()
       const productsCount = await ctx.prisma.question.count({
         where: {
           answer: {
@@ -94,6 +95,8 @@ export const questionsRouter = router({
       })
       answers = [...answers, question.answer]
       shuffleArray(answers)
+      const fin = new Date()
+      console.log('FIN FONCTION', (fin.getTime() - debut.getTime()) / 1000)
 
       return {
         question,
