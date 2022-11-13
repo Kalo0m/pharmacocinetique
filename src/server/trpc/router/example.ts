@@ -41,6 +41,7 @@ export const questionsRouter = router({
         skip,
         include: {
           answer: true,
+          answers: true,
         },
         where: {
           answer: {
@@ -58,51 +59,51 @@ export const questionsRouter = router({
       });
       if (!question) throw new Error('No question found');
       if (!question.answer) throw new Error('No question\'s answer found');
-      const answersCount = await ctx.prisma.answer.findMany({
-        distinct: ['answer'],
-        where: {
-          type: {
-            equals: question.answer.type
-
-          },
-          answer: {
-            notIn: ['', question.answer.answer],
-          },
-          id: {
-            not: question.answer.id
+      let answers: Answer[] = question.answers
+      console.log(question)
+      if (question.answer.type !== '') {
+        const answersCount = await ctx.prisma.answer.findMany({
+          distinct: ['answer'],
+          where: {
+            type: {
+              equals: question.answer.type
+            },
+            answer: {
+              notIn: ['', question.answer.answer],
+            },
+            id: {
+              not: question.answer.id
+            }
           }
-        }
-      });
+        });
 
-      const skip2 = Math.floor(Math.random() * answersCount.length);
-      let answers = await ctx.prisma.answer.findMany({
-        take: 2,
-        skip: skip2,
-        distinct: ['answer'],
-        where: {
-          type: {
-            equals: question.answer.type
+        const skip2 = Math.floor(Math.random() * answersCount.length);
+        answers = await ctx.prisma.answer.findMany({
+          take: 2,
+          skip: skip2,
+          distinct: ['answer'],
+          where: {
+            type: {
+              equals: question.answer.type
 
-          },
-          answer: {
-            notIn: ['', question.answer.answer],
-          },
-          id: {
-            not: question.answer.id
+            },
+            answer: {
+              notIn: ['', question.answer.answer],
+            },
+            id: {
+              not: question.answer.id
+            }
           }
-        }
-
-      })
+        })
+      }
       answers = [...answers, question.answer]
       shuffleArray(answers)
       const fin = new Date()
       console.log('FIN FONCTION', (fin.getTime() - debut.getTime()) / 1000)
-
       return {
         question,
         answers
       }
-
     }),
   getCategories: publicProcedure.query(async ({ ctx }): Promise<string[]> => {
     const categories = await ctx.prisma.question.findMany({

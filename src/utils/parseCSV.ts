@@ -18,19 +18,22 @@ export const parseCSVFile = async () => {
 
   const fileContent = fs.readFileSync(`./src/utils/${category}.csv`, { encoding: 'utf-8' });
   parse(fileContent, {
-    delimiter: ',',
+    delimiter: ';',
   }, async (error, result: any[]) => {
+    console.log(result)
     if (error) {
       console.error(error);
     }
 
-    const transposedArray = result.map((_: any, colIndex) => result.map(row => row[colIndex]));
+    const transposedArray = result[0].map((col: any, c: any) => result.map((row, r) => result[r][c]));
+    console.log(transposedArray);
     if (!transposedArray[0]) throw Error('no header')
     const [[_, __, ...header], ...data] = transposedArray;
     if (!data[2]) return
-    const questions: any[] = data.map((d) => {
+    const questions: any[] = data.map((d: any) => {
       const [group, mol, ...answers] = d;
-      const questions = answers?.reduce((acc, current: any, index: number) => {
+      console.log(answers)
+      const questions = answers?.reduce((acc: any, current: any, index: number) => {
         return {
           ...acc,
           [header[index]]: current,
@@ -42,6 +45,7 @@ export const parseCSVFile = async () => {
         answers: questions
       }
     })
+    console.log(questions.length)
     const promises: any = questions.flatMap((q) => {
       return Object.entries(q.answers).map(async ([key, value]: any) => {
         const question = await prisma.question.create({

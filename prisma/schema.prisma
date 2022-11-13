@@ -16,8 +16,11 @@ model Question {
   updatedAt DateTime @updatedAt
   molecule  String
   question  String
-  answer    Answer? @relation(fields: [answerId], references: [id], onDelete: Cascade)
+  answer    Answer? @relation(fields: [answerId], references: [id], onDelete: Cascade, name: "AnswerToQuestion")
+  answers   Answer[] @relation(name: "AnswersToQuestion")
   answerId  String? @unique
+  
+
   results   Result[]
   category  String
 }
@@ -28,7 +31,9 @@ model Answer {
   updatedAt DateTime @updatedAt
   answer    String
   type      String
-  question  Question?
+  question  Question? @relation(name: "AnswerToQuestion")
+  questionAsked Question? @relation(fields: [questionAskedId], references: [id], onDelete: Cascade, name: "AnswersToQuestion")
+  questionAskedId String? 
 }
 
 model Result {
